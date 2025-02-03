@@ -32,3 +32,13 @@ var f7 = kategoriaNevek.Except(
 if (f7.Any()) Console.WriteLine($"\t{string.Join('-', f7)}");
 else Console.WriteLine("\tMinden sebességkategóriából van repülőgéptípus");
 
+using StreamWriter sw = new($"{PATH}\\utasszallitok_new.txt", false, Encoding.UTF8);
+sw.WriteLine(fejlec);
+foreach (var r in utassallitok)
+{
+    sw.WriteLine($"{r.Tipus};{r.Ev};" +
+        $"{r.Utas.Max};{r.Szemelyet.Max};" +
+        $"{r.Utazosebesseg};" +
+        $"{Math.Round(r.Felszallotomeg / 1000d)};" +
+        $"{Math.Round(r.Fesztav * 3.2808)}");
+}
